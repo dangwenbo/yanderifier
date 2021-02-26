@@ -278,7 +278,24 @@ def start():
         write('error: already started!')
         return
     stopped = False
-    threading.Thread(target=worker_thread, args=(video_in_path, image_in_path, video_out_path, use_cpu.get(), relative.get())).start()
+    # write('video_in_path:%s' % video_in_path)
+    # write('image_in_path:%s' % image_in_path)
+    # write('video_out_path:%s' % video_out_path)
+    (image_in_folder, image_in_file) = os.path.split(image_in_path)
+    (video_out_folder, video_out_file) = os.path.split(video_out_path)
+
+    image_files = []
+    file_list = os.listdir(image_in_folder)
+    for file in file_list:
+        if file.endswith('.png') or file.endswith('.jpg'):
+            image_files.append(image_in_folder + os.sep + file)
+    
+    for image_file in image_files:
+        out_put_path = video_out_folder + os.sep + os.path.split(image_file)[1].replace('.png', '.mp4').replace('.jpg', '.mp4')
+        # write('image_file: %s start' % image_file)
+        # write('out_put_path: %s' % out_put_path)
+        threading.Thread(target=worker_thread, args=(video_in_path, image_file, out_put_path, use_cpu.get(), relative.get())).start()
+        # write('image_file: %s finished' % image_file)
 
 def show_kitty():
     webbrowser.open('https://thiscatdoesnotexist.com/')

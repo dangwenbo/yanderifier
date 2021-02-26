@@ -82,4 +82,4 @@ dependencies:
   - zlib=1.2.11=vc14h1cdd9ab_1
   - zstd=1.4.4=ha9fde0e_3
   - ffmpeg=4.0.2
-  - x264=='1!152.20180717'
+  # - x264=='1!152.20180717'
