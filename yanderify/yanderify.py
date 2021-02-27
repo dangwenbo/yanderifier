@@ -259,9 +259,9 @@ def worker_thread(vid0n, img0n, vid1n, cpu, relative):
         q.put('- one of the devs fucked up somewhere. if that is the case, make sure to submit the full crash report (you might have to scroll up!), otherwise we cannot help you!')
         raise e
     except KeyboardInterrupt as e:
-        q.put('Stopping...')
+        q.put('%s Stopping...' % img0n)
     else:
-        q.put('success!')
+        q.put('%s success!' % img0n)
     finally:
         stopped = True
 
